@@ -1,11 +1,24 @@
-import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchData } from './store/getData';
+import Greeting from './components/Greeting';
 
-function App() {
+const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchData());
+  }, [dispatch]);
+
   return (
-    <h1 className="App">
-      Hello
-    </h1>
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Greeting />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
-}
+};
 
 export default App;
